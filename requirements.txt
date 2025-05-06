@@ -1,8 +1,0 @@
-streamlit
-torch
-transformers
-scikit-learn
-nltk
-pandas
-numpy
-vaderSentiment
