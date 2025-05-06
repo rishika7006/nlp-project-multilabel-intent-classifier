@@ -1,3 +1,4 @@
+# import required libraries
 import pandas as pd
 from google_play_scraper import app, Sort, reviews
 from pprint import pprint
@@ -13,27 +14,19 @@ client = pymongo.MongoClient(
 app_proj_db = client['playstore_reviews']  # Using a consistent DB name
 review_collection = app_proj_db['bank_reviews']  # Collection where reviews are stored
 
-# choosing some random app names along with their app ids
+# choosing some banking app names along with their app IDs
 app_names = [
     'SBI',
 'UNION',
 'CBOI',
 'BOI',
-# 'CORP',
-# 'IOB',
-# 'LVB',
-# 'KVB'
 ]
 
 app_ids =  [
   'com.freedomrewardz',
 'com.unionrewardz',
 'com.centrewardz',
-'com.boistarrewardz',
-# 'com.corprewardz',
-# 'com.iobrewardz',
-# 'com.lvbrewardz',
-# 'com.kvbrewardz'
+'com.boistarrewardz'
 ]
 
 for app_name, app_id in zip(app_names, app_ids):
@@ -50,7 +43,7 @@ for app_name, app_id in zip(app_names, app_ids):
 
         rvws, token = reviews(app_id, lang='en', country='us', sort=Sort.NEWEST, count=count)
         if not rvws:
-            print(f"⚠️ No reviews found for {app_name} — app may not exist or have no reviews.\n")
+            print(f"No reviews found for {app_name} — app may not exist or have no reviews.\n")
             continue
 
         for r in rvws:
@@ -96,13 +89,13 @@ for app_name, app_id in zip(app_names, app_ids):
             review_collection.insert_many(app_reviews)
 
         end = dt.datetime.now(tz=get_localzone())
-        print(f"\n✅ All {app_name} reviews inserted at {end.strftime(fmt)}.")
-        print(f"🕒 Time taken: {end - start}")
+        print(f"\nAll {app_name} reviews inserted at {end.strftime(fmt)}.")
+        print(f"Time taken: {end - start}")
         print('-------------------------------------------------------------------------\n')
         time.sleep(random.randint(1, 5))
 
     except Exception as e:
-        print(f"❌ Failed to scrape {app_name} ({app_id}): {str(e)}\n")
+        print(f"Failed to scrape {app_name} ({app_id}): {str(e)}\n")
         continue
 
 # converting the results into dataframe
