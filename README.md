@@ -67,8 +67,8 @@ The model identifies one or more of the following intents:
 Clone the repo:
 
 ```bash
-git clone https://github.com/rishika7006/nlp-project-multilabel-intent-classifier.git
-cd nlp-project-multilabel-intent-classifier
+git clone https://github.com/rishika7006/intent-classifier-xlnet.git
+cd intent-classifier-xlnet
 ```
 
 Install dependencies:
@@ -80,8 +80,10 @@ pip install -r requirements.txt
 ### Run the Streamlit App
 
 ```bash
-streamlit run multilabel_classifier_app.py
+streamlit run 03_multilabel_classifier_app.py
 ```
+
+> Related repo: [sentiment-intent-app](https://github.com/rishika7006/sentiment-intent-app) — Streamlit dashboard that applies this XLNet classifier end-to-end on scraped Play Store reviews.
 
 ---
 
